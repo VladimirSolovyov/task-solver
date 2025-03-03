@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>2619</title>
+		<link rel="stylesheet" href="style.css" />
+		<script>
+			Array.prototype.last = function () {
+				return this.length ? this[this.length - 1] : -1
+			}
+		</script>
+	</head>
+	<body>
+		<h1>2619. Последний элемент массива</h1>
+
+		<h2>Описание задачи</h2>
+		<p>
+			Напишите код, который расширяет функциональность всех массивов таким
+			образом, чтобы можно было вызвать метод array.last() на любом массиве.
+			Этот метод должен возвращать последний элемент массива. Если массив пуст,
+			метод должен вернуть -1.
+		</p>
+		<p>Можно считать, что массив является результатом выполнения JSON.parse.</p>
+
+		<h3>Пример 1:</h3>
+		<pre>
+		Входные данные: nums = [null, {}, 3]
+		Результат: 3
+		Объяснение: Вызов nums.last() должен вернуть последний элемент: 3.
+		</pre
+		>
+
+		<h3>Пример 2:</h3>
+		<pre>
+		Входные данные: nums = []
+		Результат: -1
+		Объяснение: Так как массив пуст, возвращаем -1.
+		</pre
+		>
+
+		<h3>Ограничения:</h3>
+		<ul>
+			<li>arr является корректным JSON массивом</li>
+			<li>0 ≤ arr.length ≤ 1000</li>
+		</ul>
+
+		<div class="demo-container">
+			<h3>Демонстрация работы:</h3>
+			<div class="input-section">
+				<label for="arrayInput">Введите элементы массива через запятую:</label>
+				<input type="text" id="arrayInput" placeholder="Например: 1,2,3" />
+				<button onclick="showLastElement()">Показать последний элемент</button>
+			</div>
+			<div class="result-section">
+				<p>Ваш массив: <span id="currentArray"></span></p>
+				<p>Последний элемент: <span id="lastElement"></span></p>
+			</div>
+		</div>
+
+		<style>
+			.demo-container {
+				margin: 20px;
+				padding: 20px;
+				border: 1px solid #ccc;
+				border-radius: 5px;
+			}
+			.input-section {
+				margin-bottom: 15px;
+			}
+			input {
+				padding: 5px;
+				margin: 0 10px;
+			}
+			button {
+				padding: 5px 10px;
+				background-color: #4caf50;
+				color: white;
+				border: none;
+				border-radius: 3px;
+				cursor: pointer;
+			}
+			button:hover {
+				background-color: #45a049;
+			}
+			.result-section {
+				margin-top: 15px;
+			}
+		</style>
+
+		<script>
+			function showLastElement() {
+				const input = document.getElementById('arrayInput').value
+				let arr = []
+
+				if (input.trim()) {
+					// Пробуем создать массив из введенных значений
+					try {
+						arr = input.split(',').map(item => {
+							const trimmed = item.trim()
+							// Пробуем распарсить как JSON, если не получится, оставляем как строку
+							try {
+								return JSON.parse(trimmed)
+							} catch {
+								return trimmed
+							}
+						})
+					} catch (e) {
+						arr = []
+					}
+				}
+
+				document.getElementById('currentArray').textContent =
+					JSON.stringify(arr)
+				document.getElementById('lastElement').textContent = arr.last()
+			}
+		</script>
+	</body>
+</html>
