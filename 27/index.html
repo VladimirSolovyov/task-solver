@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>27</title>
+		<script>
+			var removeElement = function (nums, val) {
+				for (i = nums.length - 1; i >= 0; i--) {
+					if (nums[i] === val) {
+						nums.splice(i, 1)
+					}
+				}
+				return nums.length
+			}
+
+			console.log(removeElement([3, 2, 2, 3], 3))
+		</script>
+	</head>
+	<body>
+		<h1>Удаление элемента из массива</h1>
+
+		<div class="description">
+			<h2>Описание задачи:</h2>
+			<p>
+				Дан целочисленный массив nums и целое число val. Требуется удалить все
+				вхождения val в массиве nums "на месте". Порядок элементов может быть
+				изменен. Функция должна вернуть количество элементов в nums, которые не
+				равны val.
+			</p>
+
+			<h3>Требования:</h3>
+			<ul>
+				<li>
+					Изменить массив nums так, чтобы первые k элементов содержали элементы,
+					не равные val
+				</li>
+				<li>Оставшиеся элементы массива nums не важны</li>
+				<li>Вернуть значение k (количество элементов, не равных val)</li>
+			</ul>
+
+			<h3>Пример:</h3>
+			<pre>
+Вход: nums = [3,2,2,3], val = 3
+Выход: 2, nums = [2,2,_,_]
+Пояснение: Функция должна вернуть k = 2, где первые два элемента nums равны 2.
+Неважно, что останется после возвращаемого k (поэтому они отмечены символом подчеркивания).
+			</pre
+			>
+		</div>
+
+		<div class="demo">
+			<h2>Демонстрация:</h2>
+			<div class="input-section">
+				<label for="arrayInput">Введите массив (через запятую):</label>
+				<input type="text" id="arrayInput" value="3,2,2,3" />
+
+				<label for="valInput">Введите значение для удаления:</label>
+				<input type="number" id="valInput" value="3" />
+
+				<button onclick="runDemo()">Запустить</button>
+			</div>
+
+			<div class="result-section">
+				<p>Результат: <span id="result"></span></p>
+				<p>Измененный массив: <span id="modifiedArray"></span></p>
+			</div>
+		</div>
+
+		<script>
+			function runDemo() {
+				const arrayInput = document.getElementById('arrayInput').value
+				const val = parseInt(document.getElementById('valInput').value)
+
+				const nums = arrayInput.split(',').map(num => parseInt(num.trim()))
+				const k = removeElement(nums, val)
+
+				document.getElementById('result').textContent = k
+				document.getElementById('modifiedArray').textContent =
+					nums.slice(0, k).join(', ') +
+					(k < nums.length ? ', _'.repeat(nums.length - k) : '')
+			}
+		</script>
+
+		<style>
+			.description,
+			.demo {
+				margin: 20px;
+				padding: 20px;
+				border: 1px solid #ccc;
+				border-radius: 5px;
+			}
+
+			.input-section {
+				display: flex;
+				flex-direction: column;
+				gap: 10px;
+				max-width: 300px;
+				margin-bottom: 20px;
+			}
+
+			button {
+				padding: 10px;
+				background-color: #4caf50;
+				color: white;
+				border: none;
+				border-radius: 5px;
+				cursor: pointer;
+			}
+
+			pre {
+				background-color: #f5f5f5;
+				padding: 10px;
+				border-radius: 5px;
+			}
+		</style>
+	</body>
+</html>
